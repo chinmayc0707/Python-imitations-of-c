@@ -1,0 +1,73 @@
+#include<stdio.h>
+#include<string.h>
+char *input(char[]);
+int integer(char[]);
+
+char *substring(char[],int);
+
+void main(){
+
+    char *p=input("Enter a string: ");
+    printf("%s\n",p);
+
+    int a=integer(input("Enter a number: "));
+    printf("%d\n",a);
+
+    char c[]="hello world!!";
+    printf("%s",substring(c,4));
+}
+
+char* input(char string[]){
+    char *data=malloc(sizeof(char));
+    printf(string);
+    char ch='h';
+    int i=0;
+    do{
+        scanf("%c",&data[i]);
+        i++;
+        data=realloc(data,(i+1)*sizeof(char));
+    }while(data[i-1]!='\n');
+
+    data[i-1]='\0';
+    return data;
+
+}
+
+int integer(char string[]){
+    int i=0,temp,number=0;
+    while(string[i]!='\0'){
+        if (string[i]>='0'&&string[i]<='9')
+        {
+            
+        temp=string[i]-'0';
+        number=number*10+temp;
+        i++;
+        }
+        else{
+            fprintf(stderr,"there is a charater found other than numbers");
+            break;
+        }
+        
+    }
+    if (strlen(string)==i){
+    return number;
+
+    }
+    
+}
+
+char *substring(char string[],int count){
+char *p=malloc(sizeof(char));
+int i=0;
+while (i<=count)
+{
+    p[i]=string[i];
+    i++;
+    p=realloc(p,(i+1)*sizeof(char));
+}
+
+
+return p;
+
+}
+
